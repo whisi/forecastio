@@ -1,0 +1,33 @@
+<h1>Home#index</h1>
+<div class="container">
+    <p><%= @timezone %></p>
+    <p><%= @daily %></p>
+    <h1>현재날씨</h1>
+    <div class="well">
+    <p>시간(그라니치 기준) : <%=DateTime.strptime(@currentData.time.to_s, '%s') %></p>
+    <p>기온 : <%= @currentData.temperature %></p>
+    <p>summary : <%= @currentData.summary %></p>
+    </div>
+    
+    <h1>오늘 날씨</h1>
+    
+    <% @hourlyData.each do |h| %>
+        <div class='well'>
+        <p> summary : <%= h.summary %></p>
+        <p>시간(그라니치 기준) : <%=DateTime.strptime(h.time.to_s, '%s') %></p>
+        <p>기온 : <%=h.temperature%></p>
+        </div>
+    
+    <% end %>
+    
+    <h1>주간 날씨</h1>
+    <% @data.each do |d| %>
+        <div class='well'>
+        <p> summary : <%= d.summary %></p>
+        <p>시간(그라니치 기준) : <%=DateTime.strptime(d.time.to_s, '%s') %></p>
+        <p>최저 : <%=d.temperatureMin%></p>
+        <p>최고 : <%=d.temperatureMax%></p>
+        </div>
+    <% end %>
+
+</div>
